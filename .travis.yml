@@ -1,0 +1,21 @@
+os: linux
+dist: focal
+
+
+language: 
+  - cpp
+
+compiler:
+  - g++
+  - clang++
+
+install:
+  - chmod -R ugo+x ./build-scripts/
+  - chmod -R ugo+x ./frontend-ctl-server/build-scripts/
+  - ./build-scripts/build-libuv.sh
+  
+script:
+  # Build tests
+  - ./frontend-ctl-server/build-scripts/build-tests.sh
+  # Run tests
+  - ./frontend-ctl-server/build/qvtokens_tests
